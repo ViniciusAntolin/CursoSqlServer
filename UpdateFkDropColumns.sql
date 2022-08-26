@@ -1,0 +1,23 @@
+---INSERIR AS REFERENCIAS DE ACORDO COM O NOME DA RUA DA TABELA CLIENTE COM SEGURANÇA---
+
+BEGIN TRAN;
+
+UPDATE c SET c.cdEndereco = e.cdEndereco
+FROM dbo.tb_Endereco e INNER JOIN dbo.tb_Clientes c ON c.nmEndereco = e.nmRua
+
+SELECT * FROM dbo.tb_Clientes
+
+SELECT * FROM dbo.tb_Endereco
+
+ROLLBACK TRAN;
+--COMMIT TRAN;
+
+---EXCLUIR AS COLUNAS QUE NÃO ESTÃO SENDO USADAS COM SEGURANÇA---
+
+BEGIN TRAN;
+
+ALTER TABLE dbo.tb_Clientes
+DROP COLUMN nmEndereco, nmCidade, nmEstado
+
+ROLLBACK TRAN;
+--COMMIT TRAN;
